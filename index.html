@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Jesús Yeste (vklf.es)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #11161f;
+            --bg-card: #161d29;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-green: #00ff88;
+            --accent-cyan: #00d8ff;
+            --border-color: #212936;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        code, .mono {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Terminal Header */
+        .terminal-bar {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot.red { background-color: #ff5f56; }
+        .dot.yellow { background-color: #ffbd2e; }
+        .dot.green { background-color: #27c93f; }
+
+        .terminal-title {
+            margin-left: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0 0 8px 8px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .prompt-line {
+            color: var(--accent-green);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .prompt-line span {
+            color: var(--accent-cyan);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .bio-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 780px;
+            margin-bottom: 1.75rem;
+        }
+
+        .bio-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .badge {
+            background-color: rgba(0, 255, 136, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: var(--accent-green);
+            padding: 0.35rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        /* Grid Sections */
+        .section-title {
+            font-size: 1.35rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .section-title::before {
+            content: "#";
+            color: var(--accent-green);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-cyan);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            background: rgba(0, 216, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Timeline / Experience */
+        .timeline {
+            border-left: 2px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -1.85rem;
+            top: 0.4rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        .timeline-item h4 {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-meta {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.35rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer & Links */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .links a:hover {
+            color: var(--accent-green);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.9rem; }
+            .hero { padding: 1.75rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Terminal Window -->
+        <div class="terminal-bar">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span class="terminal-title mono">jesus@vklf.es:~/about-me</span>
+        </div>
+
+        <header class="hero">
+            <div class="prompt-line mono">
+                <span>┌──(</span>jesus㉿vklf.es<span>)-[</span>~/whoami<span>]</span><br>
+                <span>└─$</span> cat profile.txt
+            </div>
+            <h1>Jesús Yeste Ramírez</h1>
+            <p class="subtitle mono">Junior Penetration Tester &amp; Systems Administrator</p>
+            <p class="bio-text">
+                Apasionado por la <strong>ciberseguridad ofensiva</strong>, la <strong>administración de sistemas</strong> y el desarrollo de soluciones automatizadas. Actualmente cursando 2º de <strong>ASIR</strong> en el IES Zaidín Vergeles (Granada), combino el análisis de vulnerabilidades y resolución de laboratorios CTF con el despliegue de infraestructuras propias, self-hosting y desarrollo en Rust y Python.
+            </p>
+            <div class="badges mono">
+                <span class="badge">eJPT Certified</span>
+                <span class="badge">Ethical Hacking</span>
+                <span class="badge">SysAdmin Linux/Windows</span>
+                <span class="badge">Docker &amp; Cloud</span>
+                <span class="badge">CTF Writeups</span>
+            </div>
+        </header>
+
+        <!-- Áreas Técnicas -->
+        <h2 class="section-title">Especialidades &amp; Stack</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Seguridad Ofensiva</h3>
+                    <span class="card-tag mono">Red Team / Pentesting</span>
+                </div>
+                <p>Auditoría de seguridad, enumeración, explotación de sistemas y post-explotación. Resolución activa de máquinas y retos en Hack The Box, TryHackMe y DockerLabs con documentación técnica en vklf.es.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sistemas &amp; Infraestructura</h3>
+                    <span class="card-tag mono">SysAdmin / DevOps</span>
+                </div>
+                <p>Administración de entornos Linux (Fedora, Kali, Ubuntu Server) y Windows. Despliegue de servicios mediante Docker, configuración DNS, servidores web, monitorización con Uptime Kuma y automatización con n8n.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Desarrollo &amp; Hardware</h3>
+                    <span class="card-tag mono">Code &amp; Maker</span>
+                </div>
+                <p>Creación de herramientas de sistema y seguridad en Rust, scripting en Bash/Python, integración de modelos LLM locales y experimentación con hardware (Flipper Zero, ESP32 y fabricación digital).</p>
+            </div>
+        </div>
+
+        <!-- Trayectoria y Certificaciones -->
+        <h2 class="section-title">Trayectoria &amp; Logros</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>Certificación eJPT (eLearnSecurity Junior Penetration Tester)</h4>
+                <div class="timeline-meta mono">INE Security • Certificación Oficial</div>
+                <p>Validación práctica de competencias en evaluación de redes, auditoría web, enumeración y explotación de vulnerabilidades.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Docente de Ciberseguridad &amp; Cibercooperante</h4>
+                <div class="timeline-meta mono">LionxSecurity &amp; INCIBE</div>
+                <p>Impartición de formación técnica en seguridad informática y labor de concienciación y divulgación en ciberseguridad.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Experiencia Internacional en Sistemas y Web</h4>
+                <div class="timeline-meta mono">Random Consulting (Malta) &amp; Close Marketing</div>
+                <p>Prácticas técnicas en administración de infraestructuras, soporte de sistemas y gestión de entornos web en producción.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Formación en Administración de Sistemas Informáticos en Red (ASIR)</h4>
+                <div class="timeline-meta mono">IES Zaidín Vergeles • Granada (Previo: Técnico en SMR)</div>
+                <p>Especialización en redes corporativas, servicios de internet, bases de datos, seguridad y alta disponibilidad.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer mono">
+            <div class="links">
+                <a href="https://vklf.es" target="_blank" rel="noopener noreferrer">[ Web &amp; Writeups: vklf.es ]</a>
+                <a href="https://github.com/vklf-official" target="_blank" rel="noopener noreferrer">[ GitHub ]</a>
+            </div>
+            <div class="copyright">
+                root@vklf.es:~$ exit 0
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
